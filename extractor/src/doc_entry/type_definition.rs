@@ -1,7 +1,8 @@
+use std::ops::Not;
+
 use crate::{
     diagnostic::Diagnostics,
     doc_comment::{DocComment, OutputSource},
-    serde_util::is_false,
     tags::{CustomTag, ExternalTag, FieldTag, Tag},
 };
 use serde::Serialize;
@@ -40,9 +41,9 @@ pub struct TypeDocEntry<'a> {
     pub tags: Vec<CustomTag<'a>>,
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub external_types: Vec<ExternalTag<'a>>,
-    #[serde(skip_serializing_if = "is_false")]
+    #[serde(skip_serializing_if = "<&bool>::not")]
     pub private: bool,
-    #[serde(skip_serializing_if = "is_false")]
+    #[serde(skip_serializing_if = "<&bool>::not")]
     pub ignore: bool,
 
     #[serde(rename = "source")]

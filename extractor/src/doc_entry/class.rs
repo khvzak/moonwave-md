@@ -1,10 +1,9 @@
-use std::collections::BTreeSet;
+use std::{collections::BTreeSet, ops::Not};
 
 use crate::{
     diagnostic::Diagnostics,
     doc_comment::{DocComment, OutputSource},
     realm::Realm,
-    serde_util::is_false,
     tags::{CustomTag, DeprecatedTag, ExternalTag, Tag},
 };
 use serde::Serialize;
@@ -27,11 +26,11 @@ pub struct ClassDocEntry<'a> {
     pub deprecated: Option<DeprecatedTag<'a>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub since: Option<String>,
-    #[serde(skip_serializing_if = "is_false")]
+    #[serde(skip_serializing_if = "<&bool>::not")]
     pub private: bool,
-    #[serde(skip_serializing_if = "is_false")]
+    #[serde(skip_serializing_if = "<&bool>::not")]
     pub unreleased: bool,
-    #[serde(skip_serializing_if = "is_false")]
+    #[serde(skip_serializing_if = "<&bool>::not")]
     pub ignore: bool,
 
     #[serde(rename = "source")]

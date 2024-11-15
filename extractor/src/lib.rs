@@ -31,7 +31,6 @@ mod doc_comment;
 mod doc_entry;
 pub mod error;
 pub mod realm;
-mod serde_util;
 pub mod source_file;
 mod span;
 mod tags;

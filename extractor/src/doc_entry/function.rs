@@ -1,10 +1,9 @@
-use std::collections::BTreeSet;
+use std::{collections::BTreeSet, ops::Not};
 
 use crate::{
     diagnostic::{Diagnostic, Diagnostics},
     doc_comment::{DocComment, OutputSource},
     realm::Realm,
-    serde_util::is_false,
     tags::{CustomTag, DeprecatedTag, ErrorTag, ExternalTag, ParamTag, ReturnTag, Tag},
 };
 use full_moon::ast::{luau::TypeInfo::Tuple, FunctionBody};
@@ -135,13 +134,13 @@ pub struct FunctionDocEntry<'a> {
     pub since: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub deprecated: Option<DeprecatedTag<'a>>,
-    #[serde(skip_serializing_if = "is_false")]
+    #[serde(skip_serializing_if = "<&bool>::not")]
     pub private: bool,
-    #[serde(skip_serializing_if = "is_false")]
+    #[serde(skip_serializing_if = "<&bool>::not")]
     pub unreleased: bool,
-    #[serde(skip_serializing_if = "is_false")]
+    #[serde(skip_serializing_if = "<&bool>::not")]
     pub yields: bool,
-    #[serde(skip_serializing_if = "is_false")]
+    #[serde(skip_serializing_if = "<&bool>::not")]
     pub ignore: bool,
 
     #[serde(rename = "source")]
