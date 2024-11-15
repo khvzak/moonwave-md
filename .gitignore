@@ -1,2 +1,5 @@
-.vscode/settings.json
+target/
+**/*.rs.bk
+
+.vscode/
 .DS_Store
