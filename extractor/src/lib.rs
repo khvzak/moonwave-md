@@ -27,8 +27,8 @@ use walkdir::{self, WalkDir};
 
 mod cli;
 mod diagnostic;
-mod doc_comment;
-mod doc_entry;
+pub mod doc_comment;
+pub mod doc_entry;
 pub mod error;
 pub mod realm;
 pub mod source_file;
@@ -42,16 +42,20 @@ pub use source_file::SourceFile;
 
 /// The class struct that is used in the main output, which owns its members
 #[derive(Debug, Serialize)]
-struct OutputClass<'a> {
-    functions: Vec<FunctionDocEntry<'a>>,
-    properties: Vec<PropertyDocEntry<'a>>,
-    types: Vec<TypeDocEntry<'a>>,
+pub struct OutputClass<'a> {
+    pub functions: Vec<FunctionDocEntry<'a>>,
+    pub properties: Vec<PropertyDocEntry<'a>>,
+    pub types: Vec<TypeDocEntry<'a>>,
 
     #[serde(flatten)]
-    class: ClassDocEntry<'a>,
+    pub class: ClassDocEntry<'a>,
 }
 
 type CodespanFilesPaths = (PathBuf, usize);
+
+pub fn generate_doc_from_source(source: &SourceFile) -> Result<Vec<OutputClass>, Error> {
+    into_classes(source.parse()?.0).map_err(Error::ParseErrors)
+}
 
 pub fn generate_docs_from_path(input_path: &Path, base_path: &Path) -> anyhow::Result<()> {
     let (codespan_files, files) = find_files(input_path)?;
