@@ -1,7 +1,7 @@
 ---
-source: tests/test-inputs.rs
+source: extractor/tests/test-inputs.rs
 expression: stderr
-
+snapshot_kind: text
 ---
 error: There must be a new line after --[=[
   ┌─ test-input/failing/missing_starting_newline.lua:1:6
@@ -16,4 +16,3 @@ error: There must be a new line after --[=[
   │ ╰^ There must be a new line after --[=[
 
 error: aborting due to diagnostic error
-

@@ -1,6 +1,7 @@
 ---
-source: tests/test-inputs.rs
+source: extractor/tests/test-inputs.rs
 expression: stdout
+snapshot_kind: text
 ---
 [
   {

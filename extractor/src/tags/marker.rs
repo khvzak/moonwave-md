@@ -36,14 +36,8 @@ mod test {
 
     #[test]
     fn snapshot() {
-        assert_yaml_snapshot!(ServerTag::parse(), @r###"
-        ---
-        Ok: {}
-        "###);
+        assert_yaml_snapshot!(ServerTag::parse(), @"Ok: {}");
 
-        assert_yaml_snapshot!(ServerTag::parse(), @r###"
-        ---
-        Ok: {}
-        "###);
+        assert_yaml_snapshot!(ServerTag::parse(), @"Ok: {}");
     }
 }

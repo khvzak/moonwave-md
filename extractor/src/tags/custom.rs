@@ -28,9 +28,6 @@ mod tests {
 
         let value = CustomTag::parse(source).unwrap();
 
-        assert_yaml_snapshot!(value, @r###"
-        ---
-        example
-        "###);
+        assert_yaml_snapshot!(value, @"example");
     }
 }

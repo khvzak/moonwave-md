@@ -44,11 +44,10 @@ mod tests {
 
         let value = ErrorTag::parse(source).unwrap();
 
-        assert_yaml_snapshot!(value, @r###"
-        ---
+        assert_yaml_snapshot!(value, @r#"
         lua_type: "\"very bad error\""
         desc: Very bad error
-        "###);
+        "#);
     }
 
     #[test]
@@ -56,11 +55,10 @@ mod tests {
         let source = Span::dummy(r#""very bad error" "#);
         let value = ErrorTag::parse(source).unwrap();
 
-        assert_yaml_snapshot!(value, @r###"
-        ---
+        assert_yaml_snapshot!(value, @r#"
         lua_type: "\"very bad error\""
         desc: ""
-        "###);
+        "#);
     }
     #[test]
     fn nothing() {
@@ -68,14 +66,13 @@ mod tests {
 
         let value = ErrorTag::parse(source);
 
-        assert_yaml_snapshot!(value, @r###"
-        ---
+        assert_yaml_snapshot!(value, @r"
         Err:
           text: Error type is required
           start: 0
           len: 0
           file_id: 0
           additional_diagnostics: []
-        "###);
+        ");
     }
 }

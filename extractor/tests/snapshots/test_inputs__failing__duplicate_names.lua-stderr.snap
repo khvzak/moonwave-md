@@ -1,6 +1,7 @@
 ---
-source: tests/test-inputs.rs
+source: extractor/tests/test-inputs.rs
 expression: stderr
+snapshot_kind: text
 ---
 error: This tag cannot be used multiple times with the same name.
    ┌─ test-input/failing/duplicate_names.lua:2:2

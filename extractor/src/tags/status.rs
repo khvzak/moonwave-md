@@ -60,12 +60,11 @@ mod tests {
 
         let value = DeprecatedTag::parse(source);
 
-        assert_yaml_snapshot!(value, @r###"
-        ---
+        assert_yaml_snapshot!(value, @r#"
         Ok:
           version: v5.3
           desc: "This is very deprecated. Never use this. Keep scrollin'."
-        "###);
+        "#);
     }
 
     #[test]
@@ -74,10 +73,9 @@ mod tests {
 
         let value = SinceTag::parse(source);
 
-        assert_yaml_snapshot!(value, @r###"
-        ---
+        assert_yaml_snapshot!(value, @r"
         Ok:
           version: v5.14
-        "###);
+        ");
     }
 }

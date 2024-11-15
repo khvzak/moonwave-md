@@ -1,6 +1,7 @@
 ---
-source: tests/test-inputs.rs
+source: extractor/tests/test-inputs.rs
 expression: stderr
+snapshot_kind: text
 ---
 error: This tag is mutually exclusive...
   ┌─ test-input/failing/class_with_unused_tags.lua:2:2
@@ -29,4 +30,3 @@ error: This tag is mutually exclusive...
   │     ------- ...with this tag.
 
 error: aborting due to diagnostic error
-

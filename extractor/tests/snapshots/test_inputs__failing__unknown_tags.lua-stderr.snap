@@ -1,6 +1,7 @@
 ---
-source: tests/test-inputs.rs
+source: extractor/tests/test-inputs.rs
 expression: stderr
+snapshot_kind: text
 ---
 error: Unknown tag
   ┌─ test-input/failing/unknown_tags.lua:3:2
@@ -15,4 +16,3 @@ error: Unknown tag
   │     ^^^^ Unknown tag
 
 error: aborting due to diagnostic error
-

@@ -52,35 +52,32 @@ mod test {
         let source = Span::dummy("COOL_NAME foo -- HEY! This is a sweet description");
 
         let value = ParamTag::parse(source).unwrap();
-        assert_yaml_snapshot!(value, @r###"
-        ---
+        assert_yaml_snapshot!(value, @r"
         name: COOL_NAME
         desc: HEY! This is a sweet description
         lua_type: foo
-        "###);
+        ");
     }
 
     #[test]
     fn lovecraftian_type() {
         let source = Span::dummy("foo Roact.Element<{ oh_no: string -> coroutine }> -- I'm sorry.");
         let value = ParamTag::parse(source).unwrap();
-        assert_yaml_snapshot!(value, @r###"
-        ---
+        assert_yaml_snapshot!(value, @r#"
         name: foo
         desc: "I'm sorry."
         lua_type: "Roact.Element<{ oh_no: string -> coroutine }>"
-        "###);
+        "#);
     }
 
     #[test]
     fn no_description() {
         let source = Span::dummy("coffee tasty");
         let value = ParamTag::parse(source).unwrap();
-        assert_yaml_snapshot!(value, @r###"
-        ---
+        assert_yaml_snapshot!(value, @r#"
         name: coffee
         desc: ""
         lua_type: tasty
-        "###);
+        "#);
     }
 }
