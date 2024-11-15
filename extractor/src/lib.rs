@@ -32,13 +32,13 @@ mod doc_entry;
 pub mod error;
 pub mod realm;
 pub mod source_file;
-mod span;
-mod tags;
+pub mod span;
+pub mod tags;
 
 pub use cli::*;
 
-use error::Error;
-use source_file::SourceFile;
+pub use error::Error;
+pub use source_file::SourceFile;
 
 /// The class struct that is used in the main output, which owns its members
 #[derive(Debug, Serialize)]

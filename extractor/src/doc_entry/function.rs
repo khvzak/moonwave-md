@@ -83,9 +83,9 @@ impl From<FunctionBody> for FunctionSource {
 
 #[derive(Debug, PartialEq, Serialize, Clone)]
 pub struct FunctionParam {
-    name: String,
-    desc: String,
-    lua_type: String,
+    pub name: String,
+    pub desc: String,
+    pub lua_type: String,
 }
 
 impl From<ParamTag<'_>> for FunctionParam {
@@ -100,8 +100,8 @@ impl From<ParamTag<'_>> for FunctionParam {
 
 #[derive(Debug, PartialEq, Serialize, Clone)]
 pub struct FunctionReturn {
-    desc: String,
-    lua_type: String,
+    pub desc: String,
+    pub lua_type: String,
 }
 
 impl From<ReturnTag<'_>> for FunctionReturn {

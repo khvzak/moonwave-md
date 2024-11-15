@@ -15,7 +15,7 @@ mod property;
 mod type_definition;
 
 pub use class::ClassDocEntry;
-pub use function::{FunctionDocEntry, FunctionType};
+pub use function::{FunctionDocEntry, FunctionParam, FunctionReturn, FunctionType};
 pub use property::PropertyDocEntry;
 pub use type_definition::TypeDocEntry;
 
