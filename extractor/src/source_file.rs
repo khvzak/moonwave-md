@@ -15,8 +15,8 @@ pub struct SourceFile {
     file_id: usize,
 }
 
-impl<'a> SourceFile {
-    pub fn from_str(source: &'a str, file_id: usize, relative_path: String) -> Result<Self, Error> {
+impl SourceFile {
+    pub fn from_str(source: &str, file_id: usize, relative_path: String) -> Result<Self, Error> {
         let ast = full_moon::parse(source).map_err(|e| {
             Error::FullMoonError(
                 e.iter()
@@ -183,7 +183,7 @@ impl<'a> SourceFile {
         })
     }
 
-    pub fn parse(&'a self) -> Result<(Vec<DocEntry>, Vec<Tag>), Error> {
+    pub fn parse(&self) -> Result<(Vec<DocEntry>, Vec<Tag>), Error> {
         let (doc_entries, errors): (Vec<_>, Vec<_>) = self
             .doc_comments
             .iter()

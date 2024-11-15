@@ -89,7 +89,7 @@ pub struct FunctionParam {
     lua_type: String,
 }
 
-impl<'a> From<ParamTag<'a>> for FunctionParam {
+impl From<ParamTag<'_>> for FunctionParam {
     fn from(tag: ParamTag) -> Self {
         Self {
             name: tag.name.to_string(),
@@ -105,7 +105,7 @@ pub struct FunctionReturn {
     lua_type: String,
 }
 
-impl<'a> From<ReturnTag<'a>> for FunctionReturn {
+impl From<ReturnTag<'_>> for FunctionReturn {
     fn from(tag: ReturnTag) -> Self {
         Self {
             desc: tag.desc.to_string(),

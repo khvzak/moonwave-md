@@ -181,7 +181,7 @@ fn into_classes<'a>(entries: Vec<DocEntry<'a>>) -> Result<Vec<OutputClass<'a>>, 
     }
 
     if diagnostics.is_empty() {
-        Ok(map.into_iter().map(|(_, value)| value).collect())
+        Ok(map.into_values().collect())
     } else {
         Err(Diagnostics::from(diagnostics))
     }
