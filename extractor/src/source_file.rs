@@ -24,21 +24,21 @@ impl SourceFile {
             )
         })?;
 
-        struct Collector<'b> {
+        struct Collector {
             buffer: Vec<(Token, Option<Stmt>)>,
             last_line: usize,
             file_id: usize,
-            relative_path: &'b str,
+            relative_path: String,
             doc_comments: Vec<DocComment>,
         }
 
-        impl<'b> Collector<'b> {
-            fn new(file_id: usize, relative_path: &'b str) -> Self {
+        impl Collector {
+            fn new(file_id: usize, relative_path: &str) -> Self {
                 Self {
                     buffer: Vec::new(),
                     file_id,
                     last_line: 0,
-                    relative_path,
+                    relative_path: relative_path.to_owned(),
                     doc_comments: Vec::new(),
                 }
             }
@@ -54,7 +54,7 @@ impl SourceFile {
                             token.start_position().bytes() + "--[=[".len(),
                             token.end_position().line() + 1,
                             self.file_id,
-                            self.relative_path.to_owned(),
+                            self.relative_path.clone(),
                             stmt,
                         ));
                     }
@@ -128,7 +128,7 @@ impl SourceFile {
                     self.buffer.first().unwrap().0.start_position().bytes(),
                     self.buffer.last().unwrap().0.end_position().line() + 1,
                     self.file_id,
-                    self.relative_path.to_owned(),
+                    self.relative_path.clone(),
                     self.buffer.last().unwrap().1.as_ref().cloned(),
                 ));
 
@@ -146,7 +146,7 @@ impl SourceFile {
             }
         }
 
-        impl Visitor for Collector<'_> {
+        impl Visitor for Collector {
             fn visit_stmt(&mut self, stmt: &Stmt) {
                 let surrounding_trivia = stmt.surrounding_trivia().0;
                 for trivia in surrounding_trivia {
