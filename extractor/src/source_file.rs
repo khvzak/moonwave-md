@@ -12,7 +12,6 @@ use full_moon::{
 #[derive(Debug)]
 pub struct SourceFile {
     doc_comments: Vec<DocComment>,
-    file_id: usize,
 }
 
 impl SourceFile {
@@ -177,10 +176,7 @@ impl SourceFile {
 
         let doc_comments = collector.finish();
 
-        Ok(Self {
-            doc_comments,
-            file_id,
-        })
+        Ok(Self { doc_comments })
     }
 
     pub fn parse(&self) -> Result<(Vec<DocEntry>, Vec<Tag>), Error> {
